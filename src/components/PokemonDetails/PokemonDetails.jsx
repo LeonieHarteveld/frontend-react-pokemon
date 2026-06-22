@@ -4,15 +4,22 @@ import axios from "axios";
 
 function PokemonDetails({ name, url }) {
 
-    const [pokemon, setPokemon] = useState([])
+    const [pokemon, setPokemon] = useState({})
     const [error, toggleError] = useState(false)
 
     useEffect(() => {
+        const controller = new AbortController();
+
 
         async function getPokemon() {
-            toggleError(false)
+
             try {
-                const result = await axios.get(url);
+                toggleError(false)
+                const result = await axios.get(url,
+                    {
+                        signal: controller.signal,
+                    });
+
                 setPokemon(result.data);
             } catch (e) {
                 console.error(e)
@@ -20,7 +27,11 @@ function PokemonDetails({ name, url }) {
             }
         }
         getPokemon();
-    }, []);
+
+        return () => {
+            controller.abort();
+        };
+    }, [url]);
 
     return (
         <>
