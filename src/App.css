@@ -1,1 +1,24 @@
-/*Schrijf hier jouw eigen CSS!*/
+.pokemon-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.outer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.outer-container img {
+    margin: 50px 0 0 0;
+}
